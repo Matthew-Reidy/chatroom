@@ -1,12 +1,13 @@
 # Chatroom
 
-## [Join Here](www.mattreidy.com)
+## [Join Here](https://www.mattreidy.com)
 
 ### Stack
 
 - **Frontend**
   - JavaScript
   - React
+  - TailwindCSS
 
 - **Backend**
   - Python
