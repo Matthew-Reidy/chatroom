@@ -1,6 +1,8 @@
 
-import{useState} from 'react'
+import{useState, createContext } from 'react'
 import { ChatBox } from './components/chatbox';
+
+export const userContext = createContext()
 
 function App() {
   const [userName, setUserName] = useState(null)
@@ -18,6 +20,7 @@ function App() {
   return (
     <div className='flex items-center justify-center min-h-screen'>
       <div className='text-center flex flex-col items-center space-y-4'>
+        <userContext.Provider value={{userName, setUserName,  setJoinInit}}>
         {
           !joinInit ? <>
                         <label className='font-bold'>Enter Username</label>
@@ -26,11 +29,13 @@ function App() {
                       </> 
                       : 
                       <>
-                        <ChatBox username={userName} joinFlag={setJoinInit} usernameset={setUserName}/>
+                        <ChatBox/>
                       </>
 
         }
+        </userContext.Provider>
 
+      
       </div>
     </div>
     

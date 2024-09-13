@@ -1,6 +1,7 @@
-import {useState, useRef, useEffect} from 'react'
-
-export const ChatBox = ({username, joinFlag, usernameset}) => {
+import {useState, useRef, useEffect, useContext} from 'react'
+import {userContext} from '../App'
+export const ChatBox = () => {
+    const context = useContext(userContext)
 
     const [messages, setMessages] = useState([])
 
@@ -9,7 +10,7 @@ export const ChatBox = ({username, joinFlag, usernameset}) => {
     const ws = useRef(null);
 
     useEffect(() => {
-        ws.current = new WebSocket(`wss://9b5valccuh.execute-api.us-west-1.amazonaws.com/test/?username=${username}`)
+        ws.current = new WebSocket(`wss://9b5valccuh.execute-api.us-west-1.amazonaws.com/test/?username=${context.userName}`)
         
         ws.current.onmessage = (event)=>{
 
@@ -40,8 +41,8 @@ export const ChatBox = ({username, joinFlag, usernameset}) => {
     if (ws.current && ws.current.readyState === WebSocket.OPEN){
         console.log("closing")
         ws.current.close(1000, "user initated")
-        joinFlag(false)
-        usernameset(null)
+        context.setJoinInit(false)
+        context.setUserName(null)
 
     }
   }
@@ -52,7 +53,7 @@ export const ChatBox = ({username, joinFlag, usernameset}) => {
 
     const messageBody = {
         action: "message",
-        userName: username,
+        userName: context.userName,
         message: msg
     }
 
