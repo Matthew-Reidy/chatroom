@@ -1,8 +1,8 @@
 
-import{useState, createContext } from 'react'
+import{useState} from 'react'
 import { ChatBox } from './components/chatbox';
+import {userContext} from './util/context'
 
-export const userContext = createContext()
 
 function App() {
   const [userName, setUserName] = useState(null)

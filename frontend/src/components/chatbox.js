@@ -1,5 +1,6 @@
 import {useState, useRef, useEffect, useContext} from 'react'
-import {userContext} from '../App'
+import {userContext} from '../util/context'
+
 export const ChatBox = () => {
     const context = useContext(userContext)
 
